@@ -22,6 +22,10 @@ spec:
       containers:
       - name: linkis-resourcemanager
         image: zhangrong1027/linkis:linkis-resourcemanager
+        lifecycle:
+            preStop:
+              exec:
+                command: ["sh","/opt/ihome/linkis-resourcemanager/bin/stop.sh"]
         imagePullPolicy: Always
         ports:
         - name: http

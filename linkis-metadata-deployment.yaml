@@ -22,6 +22,10 @@ spec:
       containers:
       - name: linkis-metadata
         image: zhangrong1027/linkis:linkis-metadata
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh","/opt/ihome/linkis-metadata/bin/stop.sh"]
         imagePullPolicy: Always
         ports:
         - name: http

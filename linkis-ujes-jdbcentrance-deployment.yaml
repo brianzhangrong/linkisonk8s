@@ -22,6 +22,10 @@ spec:
       containers:
       - name: linkis-ujes-jdbcentrance
         image: zhangrong1027/linkis:linkis-jdbcentrance
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh","/opt/ihome/linkis-ujes-jdbcentrance/bin/stop.sh"]
         imagePullPolicy: Always
         ports:
         - name: http

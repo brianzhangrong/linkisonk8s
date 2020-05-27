@@ -23,6 +23,10 @@ spec:
       - name: linkis-publicservice
         image: zhangrong1027/linkis:linkis-publicservice
         imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh","/opt/ihome/linkis-publicservice/bin/stop.sh"]
         ports:
         - name: http
           containerPort: 14003
