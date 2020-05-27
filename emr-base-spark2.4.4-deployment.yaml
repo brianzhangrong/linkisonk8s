@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emr-base-spark-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: emr-base-spark
+      # release: dev
+  template:
+    metadata:
+      labels:
+        app: emr-base-spark
+        # release: dev
+    spec:
+      containers:
+      - name: emr-base-spark
+        image: zhangrong1027/linkis:emr-base-spark2.4.4
+        ports:
+        - name: http
+          containerPort: 80
+        command: ["bash","-c","while true;do date;sleep 1;done"]

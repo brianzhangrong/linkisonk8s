@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emr-base-spark
+  labels:
+     os: linux
+spec:
+  nodeSelector:
+    node: centos
+    
+  imagePullSecrets:
+    - name: registry-key 
+    
+  containers:
+  - name: emr-base-spark
+    image: zhangrong1027/linkis:emr-base-spark2.4.4
+    imagePullPolicy: Always
+    env:
+    - name: Test
+      value: "123456"
+    command: ["bash","-c","while true;do date;sleep 1;done"]
+  volumes:
+    - name: registry-key
+      secret:
+        secretName: registry-key
+  # tolerations:
+  #   - key: "node-role.kubernetes.io/master"
+  #     operator: "Equal"
+  #     value: ""
+  #     effect: "NoSchedule"
+    # resources:
+    #   requests:
+    #     cpu: 0.1
+    #     memory: 32Mi
+    #   limits:
+    #     cpu: 0.5  
+    #     memory: 32Mi
+  restartPolicy: Always
+  
+    

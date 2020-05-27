@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linkis-publicservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linkis-publicservice
+      # release: dev
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: linkis-publicservice
+        # release: dev
+    spec:
+      containers:
+      - name: linkis-publicservice
+        image: zhangrong1027/linkis:linkis-publicservice
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 14003
+        env:
+          - name: eurekaurl
+            value: http://10.206.0.12:20230/eureka/
+        # command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
+        # command: ["bash","-c","while true;do date;sleep 1;done"]
