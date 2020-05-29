@@ -35,7 +35,7 @@ spec:
             value: http://10.206.0.12:20230/eureka/
         volumeMounts:
           - name: linkis-publicservice-config
-            mountPath: /opt/ihome/linkis-publicservice/conf
+            mountPath: /opt/ihome/conf
       volumes:
         - name: linkis-publicservice-config
           configMap:
