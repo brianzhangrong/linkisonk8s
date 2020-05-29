@@ -33,5 +33,12 @@ spec:
         env:
           - name: eurekaurl
             value: http://10.206.0.12:20230/eureka/
-        # command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
-        # command: ["bash","-c","while true;do date;sleep 1;done"]
+        volumeMounts:
+          - name: linkis-metadata-config
+            mountPath: /opt/ihome/conf
+      imagePullSecrets:
+        - name: registry-key
+      volumes:
+        - name: linkis-metadata-config
+          configMap:
+            name: linkis-metadata-config
