@@ -7,7 +7,6 @@ spec:
   selector:
     matchLabels:
       app: linkis-publicservice
-      # release: dev
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,7 +16,7 @@ spec:
     metadata:
       labels:
         app: linkis-publicservice
-        # release: dev
+        release: dev
     spec:
       containers:
       - name: linkis-publicservice

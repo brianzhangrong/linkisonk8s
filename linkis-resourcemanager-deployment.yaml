@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         app: linkis-resourcemanager
-        # release: dev
+        release: dev
     spec:
       containers:
       - name: linkis-resourcemanager

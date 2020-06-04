@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: linkis-gateway
-        image: zhangrong1027/linkis:linkis-gateway
+        image: hub.ihomefnt.com/library/linkis:linkis-gateway
         lifecycle:
             preStop:
               exec:
@@ -30,10 +30,14 @@ spec:
         imagePullPolicy: Always
         ports:
         - name: http
-          containerPort: 14001
+          containerPort: 13429
         env:
           - name: eurekaurl
             value: http://10.206.0.12:20230/eureka/
+          - name: SERVER_HEAP_SIZE
+            value: 1024M
+          - name: START_PORT
+            value: "13429"
         volumeMounts:
           - name: linkis-gateway-config
             mountPath: /opt/ihome/conf
